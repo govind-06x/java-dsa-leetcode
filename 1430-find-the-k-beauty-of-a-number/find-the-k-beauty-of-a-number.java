@@ -1,16 +1,17 @@
 class Solution {
     public int divisorSubstrings(int num, int k) {
-        String s = String.valueOf(num);
+        int tenpow = (int)Math.pow(10,k);
+        int original = num;
+        int n = (int)Math.log10(num) + 1;
         int count = 0;
-
-        for (int i = 0; i <= s.length() - k; i++) {
-            String sub = s.substring(i, i + k);
-            int val = Integer.parseInt(sub);
-
-            if (val != 0 && num % val == 0) {
-                count++;
-            }
-        }
-        return count;
+        int noOfTimes = n-k+1;
+        while(noOfTimes>0)
+       {
+            int rem = num % tenpow;
+            if(rem !=0 && original% rem == 0) count++;
+            num /= 10;
+            noOfTimes--;
+       }
+       return count;
     }
 }
