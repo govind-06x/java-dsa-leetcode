@@ -7,6 +7,7 @@ class Solution {
         int distinct = 0;
         String result = "";
         int min = s.length()+1;
+        int start = -1;
 
         for (int i = 0; i < t.length(); i++) {
             fixed[t.charAt(i)]++;
@@ -20,7 +21,7 @@ class Solution {
             while (distinct == t.length()) {
                 if(min > right - left + 1){
                     min = right - left + 1;
-                    result = s.substring(left,right+1);
+                    start = left;
                 }
                 char leftch = s.charAt(left);
                 freq[leftch]--;
@@ -30,6 +31,6 @@ class Solution {
                 left++;
             }
         }
-        return result;
+        return start== -1 ? "" : s.substring(start,start+min) ;
     }
 }
